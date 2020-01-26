@@ -70,6 +70,7 @@ function draw(){
     platform.display();
     //log6.display();
     slingshot.display();
+    console.log(bird.body.speed);
     text("score"+score,width-300,50)    
 }
 
@@ -86,7 +87,9 @@ function mouseReleased(){
 }
 
 function keyPressed(){
-    if(keyCode === 32){
+    if(keyCode === 32 && bird.body.speed<1){
+        bird.trajectory=[];
+        Matter.Body.setPosition(bird.body,{x:200,y:50});
        slingshot.attach(bird.body);
        gameState= "onSling";
     }
